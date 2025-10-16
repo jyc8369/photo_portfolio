@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사진 포트폴리오</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>사진 포트폴리오</h1>
+        <nav>
+            <button class="filter-btn active" data-category="all">전체</button>
+            <button class="filter-btn" data-category="portrait">인물</button>
+            <button class="filter-btn" data-category="landscape">풍경</button>
+            <button class="filter-btn" data-category="street">스트릿</button>
+        </nav>
+    </header>
+    <main>
+        <div class="gallery">
+            <!-- 사진들은 JavaScript로 동적으로 추가됩니다 -->
+        </div>
+    </main>
+    <div class="lightbox" id="lightbox">
+        <span class="close">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
