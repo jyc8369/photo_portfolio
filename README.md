@@ -1,12 +1,6 @@
 # 사진 포트폴리오 웹사이트
 
-이 웹사이트는 개인 ### GUI 모드 (권장)
-1. 터미널에서 `python manage_photos.py`를 실행하세요.
-2. 각 사진의 제목, 카테고리, 설명을 직접 편집하세요.
-3. "저장" 버튼을 클릭하여 개별 사진 정보를 저장하세요.
-4. 모든 사진을 설정한 후 "JSON 저장" 버튼을 클릭하세요.
-
-카테고리 옵션: portrait, landscape, street, nature, architecture, macro, other러리 형식으로 전시하는 포트폴리오입니다.
+이 웹사이트는 개인 사진 포트폴리오를 갤러리 형식으로 전시하는 포트폴리오입니다.
 
 ## 기능
 
@@ -41,7 +35,7 @@
 4. "저장" 버튼을 클릭하세요.
 5. 모든 사진을 설정한 후 "JSON 저장" 버튼을 클릭하세요.
 
-카테고리 옵션: portrait, landscape, street, nature, architecture, macro, other
+카테고리 옵션: portrait, landscape, street, nature, architecture, abstract, cityscape, food, night, sports, macro, other
 
 ### 콘솔 모드 (대안)
 스크립트를 수정하여 콘솔 입력을 사용할 수 있습니다.

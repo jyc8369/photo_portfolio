@@ -8,7 +8,8 @@ async function loadPhotos() {
         photoData.forEach(data => {
             const photoDiv = document.createElement('div');
             photoDiv.className = 'photo';
-            photoDiv.dataset.category = data.category;
+            const categories = Array.isArray(data.category) ? data.category : [data.category];
+            photoDiv.dataset.category = categories.join(','); // 여러 카테고리 지원
             photoDiv.dataset.alt2 = data.alt2 || '';  // 설명2 추가
 
             const title = document.createElement('h3');
@@ -49,7 +50,8 @@ let photos = document.querySelectorAll('.photo'); // 동적으로 업데이트
 function filterPhotos(category) {
     photos = document.querySelectorAll('.photo'); // 동적으로 가져오기
     photos.forEach(photo => {
-        if (category === 'all' || photo.dataset.category === category) {
+        const photoCategory = photo.dataset.category.split(','); // 여러 카테고리 지원
+        if (category === 'all' || photoCategory.includes(category)) {
             photo.style.display = 'block';
         } else {
             photo.style.display = 'none';

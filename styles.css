@@ -60,6 +60,33 @@ nav {
     margin: 0 auto;
 }
 
+.gallery.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.gallery.list-view .photo {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.gallery.list-view .photo img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 4px;
+}
+
+.gallery.list-view .photo h3 {
+    margin: 0;
+    flex: 1;
+}
+
 .photo {
     overflow: hidden;
     border-radius: 8px;
@@ -143,34 +170,12 @@ nav {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.metadata-card {
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 0; /* 위쪽 마진 제거 */
-    max-width: 300px;
-    text-align: left;
-    flex-shrink: 0; /* 카드 크기 유지 */
-    position: relative;
-}
 
-.metadata-card h4 {
-    margin: 0 0 15px 0;
-    font-size: 1.4em;
-    color: #555;
-}
-
-.metadata-card p {
-    margin: 8px 0;
-    font-size: 1em;
-}
 
 #lightbox-img {
-    max-width: 90%; /* 크기 증가 */
-    max-height: 80vh; /* 높이 제한 */
-    object-fit: contain; /* 이미지 비율 유지 */
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
 }
 
 .lightbox.hidden {
@@ -232,6 +237,14 @@ nav {
     }
     .gallery {
         grid-template-columns: 1fr;
+    }
+    .gallery.list-view .photo {
+        flex-direction: column;
+        text-align: center;
+    }
+    .gallery.list-view .photo img {
+        margin-right: 0;
+        margin-bottom: 10px;
     }
     h1 {
         font-size: 2em;

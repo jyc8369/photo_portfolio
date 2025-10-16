@@ -4,40 +4,37 @@
         "title": "718",
         "category": "portrait",
         "alt": "포르쉐 718 박스터",
-        "date": "11",
-        "time": "11",
-        "alt2": "오"
+        "alt2": "iPhone 12 Pro"
     },
     {
         "src": "images/5.JPG",
-        "title": "4",
-        "category": "portrait",
-        "alt": "5.JPG",
-        "date": "",
-        "time": ""
-    },
-    {
-        "src": "images/4.JPG",
-        "title": "3",
-        "category": "portrait",
-        "alt": "4.JPG",
-        "date": "",
-        "time": ""
-    },
-    {
-        "src": "images/3.JPG",
-        "title": "2",
-        "category": "portrait",
-        "alt": "3.JPG",
-        "date": "",
-        "time": ""
+        "title": "오키나와1",
+        "category": [
+            "architecture",
+            "cityscape"
+        ],
+        "alt": "수영장과 칵테일 바",
+        "alt2": "iPhone 12 Pro"
     },
     {
         "src": "images/2.JPG",
-        "title": "오키나와",
-        "category": "portrait",
-        "alt": "나하시",
-        "date": "",
-        "time": ""
+        "title": "오키나와2",
+        "category": "landscape",
+        "alt": "건물 옥상에서 본 석양",
+        "alt2": "iPhone 12 Pro"
+    },
+    {
+        "src": "images/3.JPG",
+        "title": "오키나와3",
+        "category": "landscape",
+        "alt": "화성",
+        "alt2": "iPhone 12 Pro"
+    },
+    {
+        "src": "images/4.JPG",
+        "title": "오키나와4",
+        "category": "nature",
+        "alt": "오키나와의 해변에서본 화물선",
+        "alt2": "iPhone 12 Pro"
     }
 ]
