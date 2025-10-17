@@ -85,6 +85,21 @@ nav {
     border-radius: 10px; /* 모서리 라운드 처리 */
 }
 
+.photo img.photo-placeholder {
+    background-color: #333;
+    min-height: 200px;
+    object-fit: contain;
+}
+
+.photo img.loaded {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .photo img:hover {
     opacity: 0.8;
 }

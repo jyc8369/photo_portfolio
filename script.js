@@ -1,72 +1,144 @@
-// 사진 데이터 로드 및 갤러리 생성
-async function loadPhotos() {
+// 전역 변수들
+let allPhotoData = []; // 모든 사진 데이터 저장
+let currentFilter = 'all'; // 현재 필터 상태
+let imageObserver; // IntersectionObserver 인스턴스
+
+// 사진 데이터 로드 (메타데이터만)
+async function loadPhotoMetadata() {
     try {
         const response = await fetch('photos.json');
-        const photoData = await response.json();
-        const gallery = document.querySelector('.gallery');
+        allPhotoData = await response.json();
+        console.log(`${allPhotoData.length}개의 사진 메타데이터 로드 완료`);
 
-        photoData.forEach(data => {
-            const photoDiv = document.createElement('div');
-            photoDiv.className = 'photo';
-            const categories = Array.isArray(data.category) ? data.category : [data.category];
-            photoDiv.dataset.category = categories.join(','); // 여러 카테고리 지원
-            photoDiv.dataset.alt2 = data.alt2 || '';  // 설명2 추가
+        // 초기 갤러리 생성 (플레이스홀더만)
+        createGalleryPlaceholders();
 
-            const title = document.createElement('h3');
-            title.textContent = data.title || data.alt;
-            photoDiv.appendChild(title);
+        // 이벤트 바인딩
+        bindEvents();
 
-            const img = document.createElement('img');
-            img.src = data.src;
-            img.alt = data.alt;
-            img.loading = 'lazy';
+        // 초기 필터링 적용
+        filterPhotos('all');
 
-            photoDiv.appendChild(img);
-            gallery.appendChild(photoDiv);
-        });
-
-        // 사진 로드 후 이벤트 바인딩
-        bindPhotoEvents();
     } catch (error) {
-        console.error('사진 데이터를 로드하는 중 오류 발생:', error);
+        console.error('사진 메타데이터를 로드하는 중 오류 발생:', error);
     }
 }
 
-// 사진 이벤트 바인딩
-function bindPhotoEvents() {
-    photos = document.querySelectorAll('.photo');
-    photos.forEach((photo) => {
-        photo.addEventListener('click', (e) => {
-            openLightbox(e.currentTarget);
-        });
+// 갤러리에 플레이스홀더 생성
+function createGalleryPlaceholders() {
+    const gallery = document.querySelector('.gallery');
+    gallery.innerHTML = ''; // 기존 내용 초기화
+
+    allPhotoData.forEach((data, index) => {
+        const photoDiv = document.createElement('div');
+        photoDiv.className = 'photo';
+        photoDiv.dataset.index = index;
+        const categories = Array.isArray(data.category) ? data.category : [data.category];
+        photoDiv.dataset.category = categories.join(',');
+        photoDiv.dataset.alt2 = data.alt2 || '';
+
+        // 제목 추가
+        const title = document.createElement('h3');
+        title.textContent = data.title || data.alt;
+        photoDiv.appendChild(title);
+
+        // 이미지 플레이스홀더 (실제 이미지는 로드하지 않음)
+        const img = document.createElement('img');
+        img.className = 'photo-placeholder';
+        img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkxvYWRpbmcuLi48L3RleHQ+PC9zdmc+';
+        img.alt = 'Loading...';
+        img.dataset.src = data.src; // 실제 이미지 경로 저장
+        img.dataset.alt = data.alt;
+
+        photoDiv.appendChild(img);
+        gallery.appendChild(photoDiv);
     });
 }
 
-// 필터 버튼
-const filterButtons = document.querySelectorAll('.filter-btn');
-let photos = document.querySelectorAll('.photo'); // 동적으로 업데이트
+// 실제 이미지 로드 함수
+function loadActualImage(imgElement) {
+    if (imgElement.classList.contains('loaded')) return; // 이미 로드된 경우
 
-// 필터링 함수
+    const actualSrc = imgElement.dataset.src;
+    const actualAlt = imgElement.dataset.alt;
+
+    // 실제 이미지 로드
+    const actualImg = new Image();
+    actualImg.onload = function() {
+        imgElement.src = actualSrc;
+        imgElement.alt = actualAlt;
+        imgElement.classList.add('loaded');
+        imgElement.classList.remove('photo-placeholder');
+    };
+    actualImg.src = actualSrc;
+}
+
+// IntersectionObserver 설정
+function setupImageObserver() {
+    if (imageObserver) {
+        imageObserver.disconnect(); // 기존 observer 해제
+    }
+
+    imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                loadActualImage(img);
+                observer.unobserve(img); // 한 번 로드되면 관찰 중지
+            }
+        });
+    }, {
+        rootMargin: '50px' // 화면에 50px 전에 로드 시작
+    });
+
+    // 현재 표시된 사진들의 이미지만 관찰
+    const visiblePhotos = document.querySelectorAll('.photo[style*="display: block"], .photo:not([style*="display: none"])');
+    visiblePhotos.forEach(photo => {
+        const img = photo.querySelector('img.photo-placeholder');
+        if (img && !img.classList.contains('loaded')) {
+            imageObserver.observe(img);
+        }
+    });
+}
+
+// 필터링 함수 (개선됨)
 function filterPhotos(category) {
-    photos = document.querySelectorAll('.photo'); // 동적으로 가져오기
+    currentFilter = category;
+    const photos = document.querySelectorAll('.photo');
+
     photos.forEach(photo => {
-        const photoCategory = photo.dataset.category.split(','); // 여러 카테고리 지원
+        const photoCategory = photo.dataset.category.split(',');
         if (category === 'all' || photoCategory.includes(category)) {
             photo.style.display = 'block';
         } else {
             photo.style.display = 'none';
         }
     });
+
+    // 필터링 후 이미지 관찰자 재설정
+    setTimeout(setupImageObserver, 100);
 }
 
-// 필터 버튼 이벤트
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        filterPhotos(button.dataset.category);
+// 이벤트 바인딩
+function bindEvents() {
+    // 필터 버튼 이벤트
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            filterPhotos(button.dataset.category);
+        });
     });
-});
+
+    // 사진 클릭 이벤트 (동적 바인딩)
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.photo')) {
+            const photoDiv = e.target.closest('.photo');
+            openLightbox(photoDiv);
+        }
+    });
+}
 
 // 라이트박스
 const lightbox = document.getElementById('lightbox');
@@ -172,8 +244,8 @@ function nextPhoto() {
 //     });
 // });
 
-// 페이지 로드 시 사진 로드
-document.addEventListener('DOMContentLoaded', loadPhotos);
+// 페이지 로드 시 사진 메타데이터 로드
+document.addEventListener('DOMContentLoaded', loadPhotoMetadata);
 
 // 닫기 버튼
 closeBtn.addEventListener('click', closeLightbox);
@@ -222,18 +294,3 @@ function handleSwipe() {
 // 라이트박스에 터치 이벤트 추가
 lightbox.addEventListener('touchstart', handleTouchStart, false);
 lightbox.addEventListener('touchend', handleTouchEnd, false);
-
-// Lazy loading (이미 HTML에 loading="lazy" 추가됨, 추가로 IntersectionObserver 사용 가능)
-const images = document.querySelectorAll('img[loading="lazy"]');
-
-const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.src; // 이미 로딩 중이므로 추가 로직 필요 없음
-            observer.unobserve(img);
-        }
-    });
-});
-
-images.forEach(img => imageObserver.observe(img));
