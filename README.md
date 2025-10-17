@@ -35,7 +35,7 @@
 4. "저장" 버튼을 클릭하세요.
 5. 모든 사진을 설정한 후 "JSON 저장" 버튼을 클릭하세요.
 
-카테고리 옵션: portrait, landscape, street, nature, architecture, abstract, cityscape, food, night, sports, macro, other
+카테고리 옵션: portrait, landscape, street, nature, architecture, abstract, cityscape, food, night, sports, sunset, other
 
 ### 콘솔 모드 (대안)
 스크립트를 수정하여 콘솔 입력을 사용할 수 있습니다.

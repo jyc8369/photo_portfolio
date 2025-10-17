@@ -60,33 +60,6 @@ nav {
     margin: 0 auto;
 }
 
-.gallery.list-view {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.gallery.list-view .photo {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.gallery.list-view .photo img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-right: 20px;
-    border-radius: 4px;
-}
-
-.gallery.list-view .photo h3 {
-    margin: 0;
-    flex: 1;
-}
-
 .photo {
     overflow: hidden;
     border-radius: 8px;
@@ -237,14 +210,6 @@ nav {
     }
     .gallery {
         grid-template-columns: 1fr;
-    }
-    .gallery.list-view .photo {
-        flex-direction: column;
-        text-align: center;
-    }
-    .gallery.list-view .photo img {
-        margin-right: 0;
-        margin-bottom: 10px;
     }
     h1 {
         font-size: 2em;

@@ -1,40 +1,176 @@
 [
     {
-        "src": "images/1.JPG",
+        "src": "images/718.JPG",
         "title": "718",
-        "category": "portrait",
-        "alt": "포르쉐 718 박스터",
-        "alt2": "iPhone 12 Pro"
-    },
-    {
-        "src": "images/5.JPG",
-        "title": "오키나와1",
         "category": [
             "architecture",
+            "sports"
+        ],
+        "alt": "박스터",
+        "alt2": ""
+    },
+    {
+        "src": "images/강원도_해변_돌.jpg",
+        "title": "강원도해변",
+        "category": [
+            "landscape",
+            "nature"
+        ],
+        "alt": "바다와 돌",
+        "alt2": ""
+    },
+    {
+        "src": "images/경북궁.jpg",
+        "title": "경북궁",
+        "category": [
+            "cityscape",
+            "architecture"
+        ],
+        "alt": "경북궁 정면",
+        "alt2": ""
+    },
+    {
+        "src": "images/노들섬_항공샷.JPG",
+        "title": "노들섬",
+        "category": [
+            "cityscape",
+            "architecture",
+            "landscape"
+        ],
+        "alt": "드론을 이용한 항공샷",
+        "alt2": ""
+    },
+    {
+        "src": "images/반포한강공원_건물_노을.JPG",
+        "title": "건물에 비친 노을",
+        "category": [
+            "architecture"
+        ],
+        "alt": "건물에 비친 노을",
+        "alt2": ""
+    },
+    {
+        "src": "images/반포한강공원_둥둥섬.JPG",
+        "title": "세빛섬",
+        "category": [
+            "architecture"
+        ],
+        "alt": "반포한강공원의 세빛섬",
+        "alt2": ""
+    },
+    {
+        "src": "images/서울_도심에서의_달.JPG",
+        "title": "서울에서의 달",
+        "category": [
+            "architecture",
+            "cityscape",
+            "night"
+        ],
+        "alt": "서울 도심에서의 달",
+        "alt2": ""
+    },
+    {
+        "src": "images/벚꽃_근접샷.JPG",
+        "title": "벚꽃 근접샷",
+        "category": [
+            "nature",
+            "sunset"
+        ],
+        "alt": "벚꽃 노을 근접샷",
+        "alt2": ""
+    },
+    {
+        "src": "images/석촌호수_벚꽃.JPG",
+        "title": "석촌호수 벚꽃",
+        "category": [
+            "landscape",
+            "nature",
             "cityscape"
         ],
-        "alt": "수영장과 칵테일 바",
-        "alt2": "iPhone 12 Pro"
+        "alt": "석촌호수의 4월",
+        "alt2": ""
     },
     {
-        "src": "images/2.JPG",
-        "title": "오키나와2",
-        "category": "landscape",
-        "alt": "건물 옥상에서 본 석양",
-        "alt2": "iPhone 12 Pro"
+        "src": "images/오키나와_1.JPG",
+        "title": "오키나와 1",
+        "category": [
+            "architecture",
+            "cityscape",
+            "portrait",
+            "sunset"
+        ],
+        "alt": "루프탑 수영장에서 본 석양",
+        "alt2": ""
     },
     {
-        "src": "images/3.JPG",
-        "title": "오키나와3",
-        "category": "landscape",
-        "alt": "화성",
-        "alt2": "iPhone 12 Pro"
+        "src": "images/오키나와_2.JPG",
+        "title": "오키나와 2",
+        "category": [
+            "architecture",
+            "cityscape",
+            "portrait",
+            "sunset"
+        ],
+        "alt": "수영장에서 본 노을",
+        "alt2": ""
     },
     {
-        "src": "images/4.JPG",
-        "title": "오키나와4",
-        "category": "nature",
-        "alt": "오키나와의 해변에서본 화물선",
-        "alt2": "iPhone 12 Pro"
+        "src": "images/오키나와_3.JPG",
+        "title": "오키나와 3",
+        "category": [
+            "landscape",
+            "nature"
+        ],
+        "alt": "오키나와 해변에서 본 화물선",
+        "alt2": ""
+    },
+    {
+        "src": "images/오키나와_4.JPG",
+        "title": "오키나와 4",
+        "category": [
+            "architecture",
+            "other"
+        ],
+        "alt": "수영장와 칵테일 바",
+        "alt2": ""
+    },
+    {
+        "src": "images/작은_벚꽃.JPG",
+        "title": "작은 벚나무",
+        "category": [
+            "landscape",
+            "nature"
+        ],
+        "alt": "작은 벚꽃나무 ",
+        "alt2": ""
+    },
+    {
+        "src": "images/초여름꽃_근접.JPG",
+        "title": "초여름꽃",
+        "category": [
+            "nature"
+        ],
+        "alt": "초여름꽃 근접샷",
+        "alt2": ""
+    },
+    {
+        "src": "images/한강_노을_물웅덩이.JPG",
+        "title": "한강 노을",
+        "category": [
+            "landscape",
+            "cityscape",
+            "portrait"
+        ],
+        "alt": "한강 노을 물웅덩이",
+        "alt2": ""
+    },
+    {
+        "src": "images/한강_다리_밑.jpg",
+        "title": "한강 다리 밑",
+        "category": [
+            "architecture"
+        ],
+        "alt": "한강 다리 밑",
+        "alt2": ""
     }
 ]
